@@ -367,17 +367,20 @@ on peut donner la liste des identifiants à la commande stop . On utilise pour c
 3. La commande suivante ne devrait plus renvoyer de containers
 
 ```docker container ls```
+
 Note: cette commande est équivalente à docker ps
 
 4. Si on ajoute l'option -a , on obtient les containers qui sont arrêtés.
 
 ```docker container ls -a```
+
 Note: cette commande est équivalente à docker ps -a
 
 5. Pour supprimer les containers qui sont arrêtés, on procède de la même façon que dans la
 question 2, on donne la liste des identifiants à la commande rm.
 
 ```docker container rm $(docker container ls -aq)```
+
 6. La commande suivante ne devrait plus lister aucun container
 
 ```docker container ls -a```
