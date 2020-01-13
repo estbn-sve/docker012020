@@ -7,7 +7,7 @@ le nom c1
 2. Lancez la commande curl google.com
 Qu'observez-vous ?
 3. Installez curl à l’aide du gestionnaire de package apk
-4. Quittez le container avec CTRL-P CTRL-Q (pour ne pas killer le processus de PID 1)
+4. Quittez le container avec CTRL-P/Q (pour ne pas killer le processus de PID 1)
 5. Créez une image, nommée myping, à partir du container c1
 Utilisez pour cela la commande commit (docker commit --help pour voir le fonctionnment de
 cette commande)
