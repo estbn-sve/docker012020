@@ -343,7 +343,6 @@ On peut voir que la commande avec laquelle le container a été lancé (ping 8.8
 (identifiant du processus). La commande sh que nous avons ensuite lancée dans le container
 à le PID 7 dans l'arbre de processus. Nous voyons également la commande ps aux qui a
 obtenue le PID 13, cette commande n'est plus active et si on la relance une nouvelle fois, on obtiendra un nouveau PID:
-```
 
 ### Exercice 8 : cleanup
 Le but de cet exercice est de stopper et de supprimer les containers existants
