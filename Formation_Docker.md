@@ -66,3 +66,6 @@ docker logs -f ID
 
 # Utilisation des ID pour stop & remove
 ```docker stop $(docker ps -q) && docker rm $(docker ps -aq)```
+
+# Docker commit : création d'une image à partir d'un conteneur
+```docker commit -m  "Ajout VIM + index.html perso" -a Pierre romantic_antonelli formation/nginx:formation```
