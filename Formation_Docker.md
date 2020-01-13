@@ -47,7 +47,22 @@ docker images
 ```docker run -d -it debian:jessie```
 
 # Publier et forwarder les ports reseau
-docker run -d --publish-all training/webapp
+```docker run -d --publish-all training/webapp```
 
 # Publier et forwarder un port specifique
-ocker run -d --publish 80:5000 training/webapp
+```docker run -d --publish 80:5000 training/webapp```
+
+# Visualiser les Logs d'un container
+```
+docker logs ID
+docker logs -f ID
+```
+
+# docker inspect 
+```docker inspect [container|network|etc....]```
+
+# Supprimer un container 
+```docker rm [ID]```
+
+# Utilisation des ID pour stop & remove
+```docker stop $(docker ps -q) && docker rm $(docker ps -aq)```
