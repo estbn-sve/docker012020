@@ -45,3 +45,9 @@ docker images
 
 # Demarrer un container en background : detaché
 ```docker run -d -it debian:jessie```
+
+# Publier et forwarder les ports reseau
+docker run -d --publish-all training/webapp
+
+# Publier et forwarder un port specifique
+ocker run -d --publish 80:5000 training/webapp
