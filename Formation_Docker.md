@@ -69,3 +69,12 @@ docker logs -f ID
 
 # Docker commit : création d'une image à partir d'un conteneur
 ```docker commit -m  "Ajout VIM + index.html perso" -a Pierre romantic_antonelli formation/nginx:formation```
+
+# Presentation des volumes :
+```docker run --name app_web --detach --publish 80:80 --volume ${PWD}/www/:/usr/share/nginx/html/ nginx:1.17```
+
+# Presentation liaison link :
+```
+docker run -it -d --name app_front --link app_web:app_web alpine-curl:1.0
+docker exec app_front curl app_web
+```
