@@ -73,15 +73,18 @@ Le container est t-il toujours en cours d’exécution ?
 Le container est t-il toujours en cours d’exécution ?
 
 #### Correction de l'exercice 3
-1. Le container peut être lancé avec la commande suivante
+1. Le container peut être lancé avec la commande suivante :
+
 ```docker container run alpine ping 8.8.8.8```
 2. La commande docker ps ne liste pas le container car le processus a été arrêté par la commande CTRL-C
-3. La commande suivante permet de lancer le container en mode "interactif"
+3. La commande suivante permet de lancer le container en mode "interactif" :
+
 ```docker container run -ti alpine ping 8.8.8.8```
 4. La commande CTRL-P CTRL-Q permet de se détacher du speudo terminal (alloué avec
 les options -t -i, ou -ti).
 Le container continue à tourner. Il est listé avec la commande docker ps
-5. La commande suivante permet de lancer le container en background
+5. La commande suivante permet de lancer le container en background : 
+
 ```docker container run -d alpine ping 8.8.8.8```
 La commande docker ps permet de voir que le container tourne, il n'est simplement pas
 attaché au terminal depuis lequel il a été lancé.
@@ -158,6 +161,7 @@ Notez l'identifiant du container retourné par la commande précédente.
 1. La commande permettant de lancer le container en question est la suivante
 ```$ docker container run -d -p 3000:80 nginx:1.14```
 Vous devriez obtenir un résultat proche de celui ci-dessous:
+```
 Unable to find image 'nginx:1.14' locally
 1.14: Pulling from library/nginx
 177e7ef0df69: Pull complete
@@ -166,12 +170,15 @@ Unable to find image 'nginx:1.14' locally
 Digest: sha256:98f78a1dde1ba9c9fbb10671b14a74fcff97f0cc85c182e217618397fcaf63fa
 Status: Downloaded newer image for nginx:1.14
 6eea1906d21fa26c6bd8695c317e29f99e651657063df1964a18906091bd1ed5
+```
 
-2. L'inspection d'un container se fait à l'aide de la commande docker inspect
-CONTAINER_ID
-Note: il est possible de n'utiliser que les permiers caractères de l'identifiant, ou bien le nom du
-container si celui-ci à été précisé avec l'option --name lors de la création.
-$ docker inspect 6eeLe résultat de la commande ci-dessus a été volontairement tronqué pour améliorer la lisibilité.
+2. L'inspection d'un container se fait à l'aide de la commande :
+```docker inspect CONTAINER_ID```
+|Note: il est possible de n'utiliser que les permiers caractères de l'identifiant, ou bien le nom du
+|container si celui-ci à été précisé avec l'option --name lors de la création.
+```$ docker inspect 6ee```
+Le résultat de la commande ci-dessus a été volontairement tronqué pour améliorer la lisibilité.
+```
 [
 {
 "Id": "6eea1906d21fa26c6bd8695...1964a18906091bd1ed5",
@@ -265,14 +272,17 @@ json.log",
 }
 }
 ]
-
+```
 3. Les format de templating "Go template" permet de récupérer seulement les informations
 dont on a besoin dans cette imposante structure json.
 La commande utilisée pour récupérer le nom du container:
-```$ docker inspect --format "{{ .Name }}" efc940```
-/elated_mcleanLa commande pour récupérer l'adresse IP du container:
-```$ docker inspect -f '{{ .NetworkSettings.IPAddress }}' efc940```
+```$ docker inspect --format "{{ .Name }}" efc940
+/elated_mclean
+```
+La commande pour récupérer l'adresse IP du container:
+```$ docker inspect -f '{{ .NetworkSettings.IPAddress }}' efc940
 172.17.0.5
+```
 4. Le templating Go est très riche, vous trouverez quelques exemples supplémentaires à
 l'adresse suivante Go template
 
@@ -280,11 +290,9 @@ l'adresse suivante Go template
 Le but de cet exercice est de montrer comment lancer un processus dans un container
 existant
 1. Lancez un container en background, basé sur l’image alpine. Spécifiez la commande
-ping 8.8.8.8
-et le nom ping avec l’option --name
+ping 8.8.8.8 et le nom ping avec l’option --name
 2. Observez les logs du container en utilisant l’ID retourné par la commande précédente ou
-bien le nom du container
-Quittez la commande de logs avec CTRL-C
+bien le nom du container. Quittez la commande de logs avec CTRL-C
 3. Lancez un shell sh, en mode interactif, dans le container précédent
 4. Listez les processus du container
 Qu'observez vous par rapport aux identifiants des processus ?
@@ -295,8 +303,9 @@ Qu'observez vous par rapport aux identifiants des processus ?
 $ docker container run -d --name ping alpine ping 8.8.8.8
 172c401915f56e3fb10391259fac77bc2d3c194a1b27fa5072335e04656e57bb
 ```
-2. La commande suivante permet de suivre les logs en continue (option -f) à partir del'identifiant
-```$ docker container logs -f 172
+2. La commande suivante permet de suivre les logs en continue (option -f) à partir de l'identifiant :
+```
+$ docker container logs -f 172
 PING 8.8.8.8 (8.8.8.8): 56 data bytes
 64 bytes from 8.8.8.8: seq=0 ttl=37 time=20.713
 64 bytes from 8.8.8.8: seq=1 ttl=37 time=19.747
@@ -311,44 +320,13 @@ ms
 ```
 Le nom du container peut également être utilisé
 ```
-$ docker
+$ docker container logs -f ping
 ...
 64 bytes
 64 bytes
 64 bytes
 64 bytes
 64 bytes
-container logs -f ping
-from
-from
-from
-from
-from
-8.8.8.8:
-8.8.8.8:
-8.8.8.8:
-8.8.8.8:
-8.8.8.8:
-seq=162
-seq=163
-seq=164
-seq=165
-seq=166
-ttl=37
-ttl=37
-ttl=37
-ttl=37
-ttl=37
-time=20.364
-time=20.822
-time=22.478
-time=19.772
-time=19.630
-ms
-ms
-ms
-ms
-ms
 ```
 La commande CTRL-C permet de quitter la sortie de logs, mais elle ne stoppe pas le container
 car elle n'est pas envoyé au processus tournant dans celui-ci.
@@ -359,44 +337,13 @@ $ docker exec -ti ping sh
 / #
 ```
 4. La commande suivante permet de lister les processus qui tournent dans le container
-```
-/ # ps aux
-PID
-USER
-1 root
-7 root
-13 root
-TIME
-0:00
-0:00
-0:00
-COMMAND
-ping 8.8.8.8
-sh
-ps aux
-```
+```/ # ps aux```
+
 On peut voir que la commande avec laquelle le container a été lancé (ping 8.8.8.8 ) à le PID 1
 (identifiant du processus). La commande sh que nous avons ensuite lancée dans le container
 à le PID 7 dans l'arbre de processus. Nous voyons également la commande ps aux qui a
 obtenue le PID 13, cette commande n'est plus active et si on la relance une nouvelle fois, on obtiendra un nouveau PID:
 ```
-/# ps aux
-PID
-USER
-1 root
-7 root
-14 root
-TIME
-0:00
-0:00
-0:00
-COMMAND
-ping 8.8.8.8
-sh
-ps aux
-```
-On peut sortir de notre shell avec un simple exit , le container continuera à tourner tant que
-le process de PID 1 est actif.
 
 ### Exercice 8 : cleanup
 Le but de cet exercice est de stopper et de supprimer les containers existants
@@ -418,18 +365,25 @@ docker container ls -a
 ```
 2. Pour stopper, en une seule ligne de commande, l'ensemble des containers qui tournent,
 on peut donner la liste des identifiants à la commande stop . On utilise pour cela l'option -q lorsque l'on liste les containers.
+
 ```docker container stop $(docker container ls -q)```
 
 3. La commande suivante ne devrait plus renvoyer de containers
+
 ```docker container ls```
 Note: cette commande est équivalente à docker ps
+
 4. Si on ajoute l'option -a , on obtient les containers qui sont arrêtés.
+
 ```docker container ls -a```
 Note: cette commande est équivalente à docker ps -a
+
 5. Pour supprimer les containers qui sont arrêtés, on procède de la même façon que dans la
 question 2, on donne la liste des identifiants à la commande rm.
+
 ```docker container rm $(docker container ls -aq)```
 6. La commande suivante ne devrait plus lister aucun container
+
 ```docker container ls -a```
 En résumé
 Nous avons commencé à jouer avec les containers et vu les commandes les plus utilisées
