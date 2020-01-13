@@ -337,12 +337,9 @@ $ docker exec -ti ping sh
 / #
 ```
 4. La commande suivante permet de lister les processus qui tournent dans le container
-```/ # ps aux```
-
-On peut voir que la commande avec laquelle le container a été lancé (ping 8.8.8.8 ) à le PID 1
-(identifiant du processus). La commande sh que nous avons ensuite lancée dans le container
-à le PID 7 dans l'arbre de processus. Nous voyons également la commande ps aux qui a
-obtenue le PID 13, cette commande n'est plus active et si on la relance une nouvelle fois, on obtiendra un nouveau PID:
+```
+/ # ps aux
+```
 
 ### Exercice 8 : cleanup
 Le but de cet exercice est de stopper et de supprimer les containers existants
