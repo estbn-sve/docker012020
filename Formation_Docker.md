@@ -84,3 +84,18 @@ docker exec app_front curl app_web
 
 # Presentation dockerfile et docker build
 ```docker build -t apache_formation:1.0 .```
+
+# Outils d'analyse Dockerfile
+https://www.fromlatest.io/
+
+# Creation volume simple 
+```docker volume create --name formation```
+
+# Utilisation du volume predefini dans un conteneur 
+```docker run -it --volume formation:/formation-ctn ubuntu:18.04```
+
+# Creation d'un network dedie
+```docker network create --driver=bridge --subnet=172.20.0.0/16 --gateway=172.20.0.1 formationvlan```
+
+# Utilisation d'un network dedie pour un conteneur
+```docker run -it --net=formationvlan ubuntu:18.04```
