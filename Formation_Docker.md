@@ -78,3 +78,9 @@ docker logs -f ID
 docker run -it -d --name app_front --link app_web:app_web alpine-curl:1.0
 docker exec app_front curl app_web
 ```
+
+# Visualisation des ressources container
+```docker stats```
+
+# Presentation dockerfile et docker build
+```docker build -t apache_formation:1.0 .```
