@@ -4,8 +4,9 @@ echo 'Version PHP courante : ' . phpversion();
 
 echo '<pre>';
 try{
-  $conn = new \PDO('mysql:host=bdd:dbname=mysql', 'root', 'roottoor');
-  $sth = $conn->prepare('SHOW DATABASE');
+  $conn = new \PDO('mysql:host=bdd', 'root', 'roottoor');
+  $sth = $conn->prepare('SHOW DATABASES');
+  $sth->execute();
   $checks = $sth->fetchAll(PDO::FETCH_ASSOC);
   foreach ($checks as $check) {
 

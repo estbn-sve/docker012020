@@ -10,7 +10,7 @@ docker rm app_bdd 2> /dev/null
 # Conteneur de base de donnée 
 docker run --name app_bdd -d -e MYSQL_ROOT_PASSWORD=roottoor \
                          -v ${PWD}/data:/var/lib/mysql:rw \
-                         mariadb:10.4
+                         mariadb:10.2
 # Conteneur php
 docker run --name app_php -d -v ${PWD}/www/:/srv/http/ \
                       --link app_bdd:bdd \
